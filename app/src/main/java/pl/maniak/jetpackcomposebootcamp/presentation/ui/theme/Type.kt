@@ -1,4 +1,4 @@
-package pl.maniak.jetpackcomposebootcamp.ui.theme
+package pl.maniak.jetpackcomposebootcamp.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

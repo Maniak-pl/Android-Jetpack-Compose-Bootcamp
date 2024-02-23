@@ -1,4 +1,4 @@
-package pl.maniak.jetpackcomposebootcamp
+package pl.maniak.jetpackcomposebootcamp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,16 +9,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import pl.maniak.jetpackcomposebootcamp.screens.StartScreen
-import pl.maniak.jetpackcomposebootcamp.ui.theme.JetpackComposeBootcampTheme
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import pl.maniak.jetpackcomposebootcamp.presentation.model.MainUiState
+import pl.maniak.jetpackcomposebootcamp.presentation.ui.MainScreen
+import pl.maniak.jetpackcomposebootcamp.presentation.ui.theme.JetpackComposeBootcampTheme
 
-class MainActivity : ComponentActivity() {
+internal class MainActivity : ComponentActivity() {
+
+    private val viewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             JetpackComposeBootcampTheme {
+                val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    StartScreen()
+                    MainScreen(uiState = uiState)
                 }
             }
         }
@@ -29,6 +35,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainActivityPreview() {
     JetpackComposeBootcampTheme {
-        StartScreen()
+        MainScreen(uiState = MainUiState.Loading)
     }
 }

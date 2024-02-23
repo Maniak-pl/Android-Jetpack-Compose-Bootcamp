@@ -1,4 +1,4 @@
-package pl.maniak.jetpackcomposebootcamp.ui.theme
+package pl.maniak.jetpackcomposebootcamp.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
