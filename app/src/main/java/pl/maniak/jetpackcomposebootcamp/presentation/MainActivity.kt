@@ -23,8 +23,14 @@ internal class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeBootcampTheme {
                 val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    MainScreen(uiState = uiState)
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    MainScreen(
+                        uiState = uiState,
+                        onProjectClicked = viewModel::onProjectClicked
+                    )
                 }
             }
         }
@@ -35,6 +41,6 @@ internal class MainActivity : ComponentActivity() {
 @Composable
 fun MainActivityPreview() {
     JetpackComposeBootcampTheme {
-        MainScreen(uiState = MainUiState.Loading)
+        MainScreen(uiState = MainUiState.Loading, onProjectClicked = {})
     }
 }

@@ -35,4 +35,14 @@ class MainViewModel : ViewModel() {
             )
         }
     }
+
+    fun onProjectClicked(project: String) {
+        viewModelScope.launch {
+            if (project == "1. BizCard App") {
+                _uiState.emit(MainUiState.ProjectBizCard)
+            } else {
+                _uiState.emit(MainUiState.Error("Project Code is not available"))
+            }
+        }
+    }
 }
